@@ -1,10 +1,12 @@
 export default class Ship {
-  constructor(length) {
-    this.#length = length;
+  constructor(name, coordinates) {
+    this.name = name;
+    this.coordinates = coordinates;
   }
 
-  #length;
-  hits = 0;
-  isSunk = () => this.hits === this.#length;
-  hit = () => (this.hits += 1);
+  #hits = 0;
+  name = '';
+  coordinates = [];
+  isSunk = () => this.#hits === this.coordinates.length;
+  hit = () => (this.#hits += 1);
 }

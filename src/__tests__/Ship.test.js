@@ -1,23 +1,23 @@
 import Ship from '../Ship';
 
 describe('Ship', () => {
-  test('hit() increments the number of hits', () => {
-    const ship = new Ship(2);
-    ship.hit();
-    expect(ship.hits).toBe(1);
-    ship.hit();
-    expect(ship.hits).toBe(2);
+  const createDestroyer = () => {
+    const destroyerCoordinates = [
+      [0, 0],
+      [0, 1],
+    ];
+    return new Ship('Destroyer', destroyerCoordinates);
+  };
+
+  test('returns true if ship sunk', () => {
+    const destroyer = createDestroyer();
+    destroyer.hit();
+    destroyer.hit();
+    expect(destroyer.isSunk()).toBe(true);
   });
 
-  test('isSunk() returns true if the ship has been sunk', () => {
-    const ship = new Ship(2);
-    ship.hit();
-    ship.hit();
-    expect(ship.isSunk()).toBe(true);
-  });
-
-  test('isSunk() returns false if the ship has not been sunk', () => {
-    const ship = new Ship(2);
-    expect(ship.isSunk()).toBe(false);
+  test("returns false if ship didn't sunk", () => {
+    const destroyer = createDestroyer();
+    expect(destroyer.isSunk()).toBe(false);
   });
 });
